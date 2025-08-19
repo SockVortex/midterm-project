@@ -1,27 +1,52 @@
 ===========================================
 Process Scheduler Simulation
 Program:
-    ☐ Create a Process Class
+    ✔ Create a Process Class @started(25-08-20 03:38) @done(25-08-20 03:40) @lasted(2m41s)
     - Attributes: PID, Priority, Task, Time
     - PID (int) - Process ID
-     - Priority (int) - Process priority (lower number = higher priority)
+    - Priority (int) - Process priority (lower number = higher priority)
     - Task (str) - Name of the task
     - Time (int) - Time required to complete the task (ms)
-    Methods:
-        - __init__(self, pid, priority, task, time) : Constructor create for the Process class
-        - __str__(self) : String representation of the Process object
+        Methods:
+            - __init__(self, pid, priority, task, time) : Constructor create for the Process class
+            - __str__(self) : String representation of the Process object
+
+    ✔ Ready Queue with LinkedList @started(25-08-20 03:46) @done(25-08-20 05:19) @lasted(1h33m54s)
+    - Create class node and LinkedList
+    - Class LinkedList:
+        Methods:
+            - enqueue(self, process): Add new process to the end of the queue
+            - dequeue(self): remove and return the process at the front of the queue
+            - is_empty(self): Check if the queue is empty
+            - peek(self): Get the process at the front of the queue without removing it
+            - getAllProcesses(self): Get a list of all processes in the queue
+    
+    ☐ Sorting Algorithms/ Recursive functions and Merge Sort @started(25-08-20 05:20)
+    - Create a function priority_scheduler(processes):
+        Rules:
+            - sort processes based on priority (lower number = higher priority)
+            - if two processes have the same priority, sort them by their arrival time (smallest time first served)
+
+    ☐ Simulation of Process Scheduler
+    - Create Stack to save history of completed processes
+    - Pull completed processes onto the stack it must be able to rollback
+    - Rollback the last completed process
+    - Create Main function runSimulation():
+            runSimulation():
+                - Remove all processes from Ready Queue(LinkedList) to save in list temporary
+                - Pass list to priority_scheduler() to sort processes
 
 ===========================================
 
 ===========================================
-☐ LinkedList Lecture 7
-☐ Class and Object Lecture 6
+✔ LinkedList Lecture 7 @done(25-08-20 04:32)
+✔ Class and Object Lecture 6 @done(25-08-20 04:00)
 ☐ ADT and Stack Data Structure Lecture 6
 ☐ Recursive functions and Merge Sort Lecture 5
 ☐ Sorting Algorithms Lecture 4
-☐ function Lecture 3
-☐ Basic Python Syntax Lecture 2
-☐ Python Basics Lecture 1
+✔ function Lecture 3 @done(25-08-20 04:33)
+✔ Basic Python Syntax Lecture 2 @done(25-08-20 04:33)
+✔ Python Basics Lecture 1 @done(25-08-20 04:33)
 ===========================================
 
 Output:
