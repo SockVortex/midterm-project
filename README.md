@@ -6,10 +6,10 @@ Midterm Project sent to ผศ.ดร. ยุทธนา เจวจินด�
 ## Table of Contents
 
 - [ℹ️Introduction](#ℹ️introduction)
-- [📝Algorithm Details](#📝algorithm-details)
-- [🧑‍💻Explain code](#🧑‍💻explain-code)
-- [🪴Usage Example](#🪴usage-example)
-- [👥Authors](#👥authors)
+- [📝Algorithm Details](#algorithm-details)
+- [🧑‍💻Explain code](#🧑explain-code)
+- [🪴Usage Example](#usage-example)
+- [👥Authors](#authors)
 
 ---
 
@@ -22,7 +22,7 @@ Midterm Project sent to ผศ.ดร. ยุทธนา เจวจินด�
 
 
 
-## 📝Algorithm Details
+## Algorithm Details
 - LinkedList Lecture 7
 - Class and Object Lecture 6
 - ADT and Stack Data Structure Lecture 6
@@ -32,7 +32,7 @@ Midterm Project sent to ผศ.ดร. ยุทธนา เจวจินด�
 - Python Basics Lecture 1
 ---
 
-## 🧑‍💻Explain code
+## Explain code
 ```bash
 class Process:
     def __init__(self, pid, task, priority, time):
@@ -60,7 +60,7 @@ __str__เป็นเมธอดพิเศษ หน้าที่ของ
 
 
 ---
-## 🪴Usage Example
+## Usage Example
 ```bash
   def runSimulation():
     # Create processes running in simulation the system
@@ -128,7 +128,7 @@ if __name__ == "__main__":
 
 ---
 
-## 👥Authors
+## Authors
     670910566 นายเอกนฤน คนใหญ่
     670910778 นายกฤตภาส จงชาญสิทโธ
 ---
