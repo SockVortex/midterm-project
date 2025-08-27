@@ -21,13 +21,13 @@ Program:
             - peek(self): Get the process at the front of the queue without removing it
             - getAllProcesses(self): Get a list of all processes in the queue
             
-            ☐ Sorting Algorithms/ Recursive functions and Merge Sort @started(25-08-20 05:20)
+            ✔ Sorting Algorithms/ Recursive functions and Merge Sort @started(25-08-20 05:20) @done(25-08-28 04:42) @lasted(1w23h22m39s)
             - Create a function priority_scheduler(processes):
             Rules:
                 - sort processes based on priority (lower number = higher priority)
                 - if two processes have the same priority, sort them by their arrival time (smallest time first served)
                 
-                ☐ Simulation of Process Scheduler
+                ✔ Simulation of Process Scheduler @done(25-08-28 04:42)
                 - Create Stack to save history of completed processes
                 - Pull completed processes onto the stack it must be able to rollback
                 - Rollback the last completed process
@@ -41,8 +41,8 @@ Program:
                     ===========================================
                     ✔ LinkedList Lecture 7 @done(25-08-20 04:32)
                     ✔ Class and Object Lecture 6 @done(25-08-20 04:00)
-                    ☐ ADT and Stack Data Structure Lecture 6
-                    ☐ Recursive functions and Merge Sort Lecture 5
+                    ✔ ADT and Stack Data Structure Lecture 6 @done(25-08-28 04:42)
+                    ✔ Recursive functions and Merge Sort Lecture 5 @done(25-08-28 04:42)
                     ☐ Sorting Algorithms Lecture 4
                     ✔ function Lecture 3 @done(25-08-20 04:33)
                     ✔ Basic Python Syntax Lecture 2 @done(25-08-20 04:33)
