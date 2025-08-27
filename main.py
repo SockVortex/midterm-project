@@ -1,205 +1,196 @@
 class Process:
-    def __init__(self, pid, priority, task, time):
-        self.pid = pid
-        self.priority = priority
-        self.task = task
-        self.time = time
-
+    def __init__(self, pid, task, priority, time):
+        self._pid = pid
+        self._task = task
+        self._priority = priority
+        self._time = time
+        
     def __str__(self):
-        return f"Process({self.pid})"
-
+        return f"Process ID: {self._pid}"
+    
 class Node:
     def __init__(self, process):
-        self.process = process
+        self._process = process
         self.next = None
     def get_process(self):
-        return self.process
+        return self._process
     def __str__(self):
-        return f"Process({self.process})"
-
+        return str(self._process)
+    
 class LinkedList:
     def __init__(self):
-        self.head = None
-        self.tail = None
-        self.size = 0
+        self._head = None
+        self._tail = None
+        self._size = 0
     
-    def append(self, process):
-        new_process = Node(process)
-        if self.tail is None:
-            self.tail = new_process
-            self.head = new_process
+    def add_process(self, process):
+        newNodeProcess = Node(process)
+        if self._tail is None:
+            self._tail = newNodeProcess
+            self._head = newNodeProcess
         else:
-            self.tail.next = new_process
-            self.tail = self.tail.next
+            self._tail.next = newNodeProcess
+            self._tail = self._tail.next
+            
+    def add_processAtMain(self, process):
+        newNodeProcess = Node(process)
+        if self._head is None:
+            self._head = newNodeProcess
+            self._tail = newNodeProcess
+        else:
+            newNodeProcess.next = self._head
+            self._head = newNodeProcess
     
-    def remove(self):
-        if (self.head is not None):
-            process = self.head
-            self.head = self.head.next
-            return process
-        else:
-            return None
+    def remove_process(self):
+        if self._head is not None:
+            removed_process = self._head
+            self._head = self._head.next
+            
+            if self._head is None:
+                self._tail = None
+                
+            return removed_process
+        return None
     
     def getAllProcesses(self):
+        current = self._head
         processes = []
-        current = self.head
         while current is not None:
             processes.append(current.get_process())
             current = current.next
         return processes
-
+    
 class Stack:
     def __init__(self):
         self._size = 0
-        self.process_list = LinkedList()
+        self._processList = LinkedList()
         
     def push(self, process):
-        new_process = Node(process)
-        new_process.next = self.process_list.head
-        self.process_list.head = new_process
-        if self.process_list.tail is None:
-            self.process_list.tail = new_process
-        self._size += 1
-
-    def pop(self): 
-        if self.process_list.head is not None:
-            process = self.process_list.head.get_process()
-            if self.process_list.head == self.process_list.head.next:
-                self.process_list.tail = None
-                if self.process_list.head is not None:
-                    self.process_list.tail = None
-                self._size -= 1
-            return process
-        return None
-
+        self._processList.add_processAtMain(process)
+        
+    def pop(self):
+        return self._processList.remove_process()
+    
     def getAllProcesses(self):
-        return self.process_list.getAllProcesses()
-
+        return self._processList.getAllProcesses()
+    
 class Queue:
     def __init__(self):
         self._size = 0
-        self.process_list = LinkedList()
+        self._processList = LinkedList()
         
     def enqueue(self, process):
-        self.process_list.append(process)
+        self._processList.add_process(process)
         self._size += 1
-   
-    def dequeue(self):
-        if not self.is_empty():
-            process = self.process_list.remove()
-            if process is not None:
-                self._size -= 1
-                return process.get_process() if process else None
-        return None
     
     def is_empty(self):
-        return self.process_list.head is None
-
+        return self._processList._head is None
+    
+    def dequeue(self):
+        if not self.is_empty():
+            inQueueProcess = self._processList.remove_process()
+            if inQueueProcess is not None:
+                self._size -= 1
+                return inQueueProcess.get_process() if inQueueProcess else None
+        return None
+    
     def peek(self):
         if not self.is_empty():
-            return self.process_list.head.get_process()
+            return self._processList._head.get_process()
         return None
     
     def getAllProcesses(self):
-        processes = []
-        current = self.process_list.head
-        while current is not None:
-            processes.append(current.get_process())
-            current = current.next
-        return processes
-
-def priority_scheduler(processes):
-    """Sort processes based on priority (lower number = higher priority)"""
-    # Using merge sort for sorting
-    if len(processes) <= 1:
-        return processes
+        return self._processList.getAllProcesses()
     
-    mid = len(processes) // 2
-    left = priority_scheduler(processes[:mid])
-    right = priority_scheduler(processes[mid:])
+def prioritySort(processList):
+    if len(processList) <= 1:
+        return processList
+    
+    mid = len(processList) // 2
+    left = prioritySort(processList[:mid])
+    right = prioritySort(processList[mid:])
     
     return merge(left, right)
 
 def merge(left, right):
-    """Merge two sorted lists based on priority and time"""
     result = []
     i = j = 0
     
     while i < len(left) and j < len(right):
         # Lower priority number = higher priority
         # If same priority, sort by time (smaller time first)
-        if (left[i].priority < right[j].priority or 
-            (left[i].priority == right[j].priority and left[i].time < right[j].time)):
+        
+        if (left[i]._priority < right[j]._priority) or (
+            left[i]._priority == right[j]._priority and left[i]._time < right[j]._time):
             result.append(left[i])
             i += 1
         else:
             result.append(right[j])
             j += 1
-    
+            
     result.extend(left[i:])
     result.extend(right[j:])
-    return result
+    return result    
 
 def runSimulation():
-    # Create processes based on target output
+    # Create processes running in simulation the system
     processes = [
-        Process(101, 3, "explorer.exe", 40),
-        Process(102, 2, "python_script.py", 30),
-        Process(103, 1, "db_service", 80),
-        Process(104, 0, "anti_virus_scan", 120),
-        Process(105, 5, "idle_task", 10),
-        Process(106, 2, "render_video.mov", 150)
+        Process(101, "explorer.exe", 5, 50),
+        Process(102, "python_script.py", 4, 30),
+        Process(103, "db_service", 0, 120), # High priority
+        Process(104, "anti_virus_scan", 0, 300), # High priority
+        Process(105, "idle_task", 2, 100), #priority = 106 and time = 106
+        Process(106, "render_video.mov", 2, 100), #priority = 105 and time = 105
+        Process(107, "email_client", 3, 80),
     ]
     
-    # Create ready queue and add all processes
-    ready_queue = Queue()
+    # Create a queue and add all processes
+    processQueue = Queue()
     for process in processes:
-        ready_queue.enqueue(process)
+        processQueue.enqueue(process)
+        
+    # Create a stack for completed processes
+    completedStack = Stack()
     
-    # Create completed stack
-    completed_stack = Stack()
-    
-    # Display initial ready queue
+    # Simulation Display
     print("--- Initial Ready Queue ---")
-    queue_processes = ready_queue.getAllProcesses()
-    print(f"    [Queue: {', '.join(str(p) for p in queue_processes)}]")
+    queueProcesses = processQueue.getAllProcesses() # see all processes in queue
+    print(f"    [Queue: {', '.join(str(p) for p in queueProcesses)}]")
     print()
     
     print("    --- Running Simulation ---")
-    print("    Sorting processes based on priority...")
-    
+    print("    Sorting processes based on priority...") 
     # Get all processes from queue for sorting
-    all_processes = []
-    while not ready_queue.is_empty():
-        all_processes.append(ready_queue.dequeue())
-    
-    # Sort processes by priority
-    sorted_processes = priority_scheduler(all_processes)
+    allProcesses = []
+    while not processQueue.is_empty():
+        allProcesses.append(processQueue.dequeue())
+        
+    sortedProcesses = prioritySort(allProcesses)
     
     # Execute processes in order
-    for process in sorted_processes:
-        print(f"    Executing {process.task} (PID: {process.pid}, P:{process.priority}, T:{process.time})")
-        completed_stack.push(process)
-    
+    for process in sortedProcesses:
+        print(f"    Executing {process._task} (PID: {process._pid}, P:{process._priority}, T:{process._time})")
+        completedStack.push(process)
     print()
+    
     print("    --- Simulation Complete ---")
     print("    Ready Queue is empty.")
-    completed_processes = completed_stack.getAllProcesses()
-    print(f"    Completed Stack: [{', '.join(str(p) for p in completed_processes)}]")
+    completedProcesses = completedStack.getAllProcesses()
+    print(f"    Completed Stack: [{', '.join(str(p) for p in completedProcesses)}]")
     print()
     
     print("    --- Performing Rollback ---")
     # Rollback the last completed process
-    rolled_back_process = completed_stack.pop()
-    print(f"    Rolled back {rolled_back_process.task} (PID: {rolled_back_process.pid}). It is now back in the ready queue.")
-    ready_queue.enqueue(rolled_back_process)
+    rolledBackProcess = completedStack.pop()._process
+    print(f"    Rolled back {rolledBackProcess._task} (PID: {rolledBackProcess._task}). It is now back in the ready queue.")
+    processQueue.enqueue(rolledBackProcess) # Simulation rollback
     print()
     
     print("    --- Final State ---")
-    final_queue_processes = ready_queue.getAllProcesses()
-    print(f"    Ready Queue: [Queue: {', '.join(str(p) for p in final_queue_processes)}]")
-    final_completed_processes = completed_stack.getAllProcesses()
-    print(f"    Completed Stack: [{', '.join(str(p) for p in final_completed_processes)}]")
-
+    finalQueueProcesses = processQueue.getAllProcesses()
+    print(f"    Ready Queue: [Queue: {', '.join(str(p) for p in finalQueueProcesses)}]")
+    finalCompletedProcesses = completedStack.getAllProcesses()
+    print(f"    Completed Stack: [{', '.join(str(p) for p in finalCompletedProcesses)}]")
+                
 if __name__ == "__main__":
     runSimulation()
