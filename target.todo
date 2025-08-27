@@ -7,68 +7,68 @@ Program:
     - Priority (int) - Process priority (lower number = higher priority)
     - Task (str) - Name of the task
     - Time (int) - Time required to complete the task (ms)
-        Methods:
-            - __init__(self, pid, priority, task, time) : Constructor create for the Process class
-            - __str__(self) : String representation of the Process object
-
-    ✔ Ready Queue with LinkedList @started(25-08-20 03:46) @done(25-08-20 05:19) @lasted(1h33m54s)
-    - Create class node and LinkedList
-    - Class LinkedList:
+    Methods:
+        - __init__(self, pid, priority, task, time) : Constructor create for the Process class
+        - __str__(self) : String representation of the Process object
+        
+        ✔ Ready Queue with LinkedList @started(25-08-20 03:46) @done(25-08-20 05:19) @lasted(1h33m54s)
+        - Create class node and LinkedList
+        - Class LinkedList:
         Methods:
             - enqueue(self, process): Add new process to the end of the queue
             - dequeue(self): remove and return the process at the front of the queue
             - is_empty(self): Check if the queue is empty
             - peek(self): Get the process at the front of the queue without removing it
             - getAllProcesses(self): Get a list of all processes in the queue
-    
-    ☐ Sorting Algorithms/ Recursive functions and Merge Sort @started(25-08-20 05:20)
-    - Create a function priority_scheduler(processes):
-        Rules:
-            - sort processes based on priority (lower number = higher priority)
-            - if two processes have the same priority, sort them by their arrival time (smallest time first served)
-
-    ☐ Simulation of Process Scheduler
-    - Create Stack to save history of completed processes
-    - Pull completed processes onto the stack it must be able to rollback
-    - Rollback the last completed process
-    - Create Main function runSimulation():
-            runSimulation():
-                - Remove all processes from Ready Queue(LinkedList) to save in list temporary
-                - Pass list to priority_scheduler() to sort processes
-
-===========================================
-
-===========================================
-✔ LinkedList Lecture 7 @done(25-08-20 04:32)
-✔ Class and Object Lecture 6 @done(25-08-20 04:00)
-☐ ADT and Stack Data Structure Lecture 6
-☐ Recursive functions and Merge Sort Lecture 5
-☐ Sorting Algorithms Lecture 4
-✔ function Lecture 3 @done(25-08-20 04:33)
-✔ Basic Python Syntax Lecture 2 @done(25-08-20 04:33)
-✔ Python Basics Lecture 1 @done(25-08-20 04:33)
-===========================================
-
-Output:
-    --- Initial Ready Queue ---
-    [Queue: Process(101), Process(102), Process(103), Process(104), Process(105), Process(106)]
-
-    --- Running Simulation ---
-    Sorting processes based on priority...
-    Executing anti_virus_scan (PID: 104, P:0, T:120)
-    Executing db_service (PID: 103, P:1, T:80)
-    Executing python_script.py (PID: 102, P:2, T:30)
-    Executing render_video.mov (PID: 106, P:2, T:150)
-    Executing explorer.exe (PID: 101, P:3, T:40)
-    Executing idle_task (PID: 105, P:5, T:10)
-
-    --- Simulation Complete ---
-    Ready Queue is empty.
-    Completed Stack: [Process(104), Process(103), Process(102), Process(106), Process(101), Process(105)]
-
-    --- Performing Rollback ---
-    Rolled back idle_task (PID: 105). It is now back in the ready queue.
-
-    --- Final State ---
-    Ready Queue: [Queue: Process(105)]
-    Completed Stack: [Process(104), Process(103), Process(102), Process(106), Process(101)]
+            
+            ☐ Sorting Algorithms/ Recursive functions and Merge Sort @started(25-08-20 05:20)
+            - Create a function priority_scheduler(processes):
+            Rules:
+                - sort processes based on priority (lower number = higher priority)
+                - if two processes have the same priority, sort them by their arrival time (smallest time first served)
+                
+                ☐ Simulation of Process Scheduler
+                - Create Stack to save history of completed processes
+                - Pull completed processes onto the stack it must be able to rollback
+                - Rollback the last completed process
+                - Create Main function runSimulation():
+                runSimulation():
+                    - Remove all processes from Ready Queue(LinkedList) to save in list temporary
+                    - Pass list to priority_scheduler() to sort processes
+                    
+                    ===========================================
+                    
+                    ===========================================
+                    ✔ LinkedList Lecture 7 @done(25-08-20 04:32)
+                    ✔ Class and Object Lecture 6 @done(25-08-20 04:00)
+                    ☐ ADT and Stack Data Structure Lecture 6
+                    ☐ Recursive functions and Merge Sort Lecture 5
+                    ☐ Sorting Algorithms Lecture 4
+                    ✔ function Lecture 3 @done(25-08-20 04:33)
+                    ✔ Basic Python Syntax Lecture 2 @done(25-08-20 04:33)
+                    ✔ Python Basics Lecture 1 @done(25-08-20 04:33)
+                    ===========================================
+                    
+                    Output:
+                        --- Initial Ready Queue ---
+                        [Queue: Process(101), Process(102), Process(103), Process(104), Process(105), Process(106)]
+                        
+                        --- Running Simulation ---
+                        Sorting processes based on priority...
+                        Executing anti_virus_scan (PID: 104, P:0, T:120)
+                        Executing db_service (PID: 103, P:1, T:80)
+                        Executing python_script.py (PID: 102, P:2, T:30)
+                        Executing render_video.mov (PID: 106, P:2, T:150)
+                        Executing explorer.exe (PID: 101, P:3, T:40)
+                        Executing idle_task (PID: 105, P:5, T:10)
+                        
+                        --- Simulation Complete ---
+                        Ready Queue is empty.
+                        Completed Stack: [Process(104), Process(103), Process(102), Process(106), Process(101), Process(105)]
+                        
+                        --- Performing Rollback ---
+                        Rolled back idle_task (PID: 105). It is now back in the ready queue.
+                        
+                        --- Final State ---
+                        Ready Queue: [Queue: Process(105)]
+                        Completed Stack: [Process(104), Process(103), Process(102), Process(106), Process(101)]
