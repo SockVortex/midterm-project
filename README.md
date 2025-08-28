@@ -361,6 +361,30 @@ if __name__ == "__main__":
 ```
 
 ## Output
+    --- Initial Ready Queue ---
+    [Queue: Process(101), Process(102), Process(103), Process(104), Process(105), Process(106), Process(107)]
+
+    --- Running Simulation ---
+    Sorting processes based on priority...
+    Sorting processes based on priority...
+    Executing db_service (PID: 103, P:0, T:120)
+    Executing anti_virus_scan (PID: 104, P:0, T:300)
+    Executing render_video.mov (PID: 106, P:2, T:100)
+    Executing idle_task (PID: 105, P:2, T:100)
+    Executing email_client (PID: 107, P:3, T:80)
+    Executing python_script.py (PID: 102, P:4, T:30)
+    Executing explorer.exe (PID: 101, P:5, T:50)
+
+    --- Simulation Complete ---
+    Ready Queue is empty.
+    Completed Stack: [Process ID: 101, Process ID: 102, Process ID: 107, Process ID: 105, Process ID: 106, Process ID: 104, Process ID: 103]
+
+    --- Performing Rollback ---
+    Rolled back explorer.exe (PID: explorer.exe). It is now back in the ready queue.
+
+    --- Final State ---
+    Ready Queue: [Queue: Process ID: 101]
+    Completed Stack: [Process ID: 102, Process ID: 107, Process ID: 105, Process ID: 106, Process ID: 104, Process ID: 103]
 ![Logo](https://github.com/SockVortex/midterm-project/blob/main/assets/image.png?raw=true)
 ---
 
