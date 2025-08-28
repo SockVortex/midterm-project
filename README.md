@@ -9,6 +9,7 @@ Midterm Project sent to ผศ.ดร. ยุทธนา เจวจินด�
 - [📝Algorithm Details](#📝algorithm-details)
 - [🧑‍💻Explain code](#🧑‍💻explain-code)
 - [🪴Usage Example](#🪴usage-example)
+- [🔳Output](#output)
 - [👥Authors](#authors)
 
 ---
@@ -360,7 +361,7 @@ if __name__ == "__main__":
 ```
 
 ## Output
-
+![Logo](https://github.com/SockVortex/midterm-project/blob/main/assets/image.png?raw=true)
 ---
 
 ## Authors
